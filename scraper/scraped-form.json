@@ -1,0 +1,42 @@
+{
+  "step1": [
+    {
+      "name": "aadhaar",
+      "label": "Aadhaar Number",
+      "type": "text",
+      "required": true,
+      "validation": {
+        "pattern": "^\\d{12}$",
+        "message": "Enter a valid 12-digit Aadhaar number"
+      }
+    },
+    {
+      "name": "aadhaar_name",
+      "label": "Name as per Aadhaar",
+      "type": "text",
+      "required": true
+    },
+    {
+      "name": "otp",
+      "label": "OTP",
+      "type": "text",
+      "required": true,
+      "validation": {
+        "pattern": "^\\d{6}$",
+        "message": "Enter a valid 6-digit OTP"
+      }
+    }
+  ],
+  "step2": [
+    {
+      "name": "pan",
+      "label": "PAN Number",
+      "type": "text",
+      "required": true,
+      "validation": {
+        "pattern": "^[A-Za-z]{5}[0-9]{4}[A-Za-z]{1}$",
+        "message": "Enter a valid PAN (e.g., ABCDE1234F)"
+      }
+    }
+  ]
+}

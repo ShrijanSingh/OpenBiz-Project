@@ -1,55 +1,87 @@
-# Udyam Registration Clone
+# Udyam Registration Portal Clone
 
-This project is a full-stack clone of the Udyam Registration portal (https://udyamregistration.gov.in/UdyamRegistration.aspx) for MSME registration in India.
+This project is a full-stack clone of the first two steps of the Udyam registration portal, matching the official UI and workflow. It includes:
+- Pixel-perfect login interface (React/Next.js, TypeScript)
+- Backend API (Node.js/Express, Prisma, PostgreSQL)
+- Dynamic form validation and OTP simulation
+- End-to-end integration and testing
 
 ## Features
-- Responsive UI closely matching the official Udyam portal
-- Dynamic form rendering for Aadhaar/OTP and PAN steps
-- Real-time validation (Aadhaar, OTP, PAN)
-- Consent checkbox and info bullets as per the portal
-- Backend API (Node.js, Express, Prisma, PostgreSQL) for validation and data storage
-- Unit/API tests for backend
-- Easy local development and testing
+- Exact UI replica using provided HTML/CSS
+- Dynamic form rendering and validation
+- OTP option selection and simulation
+- Backend API for form submission and validation
+- PostgreSQL database integration
+- Jest/Supertest backend tests
 
-## Tech Stack
-- Frontend: Next.js (TypeScript, React)
-- Backend: Node.js, Express, Prisma ORM
-- Database: PostgreSQL
-- Scraper: Node.js (Puppeteer/Cheerio, mock schema for demo)
+## Project Structure
+```
+OpenBiz Project/
+├── frontend/         # Next.js app (React, TypeScript)
+│   ├── src/app/UdyamLogin.tsx   # Udyam login React component
+│   ├── src/app/page.tsx         # Main page (renders UdyamLogin)
+│   ├── public/scraped-form.json # Form schema
+│   └── ...
+├── backend/          # Express API server
+│   ├── index.js      # Main server
+│   ├── validate.js   # Validation logic
+│   ├── prisma/       # Prisma schema
+│   ├── __tests__/    # API tests
+│   └── ...
+├── scraper/          # (Optional) Puppeteer/cheerio scraper
+│   └── index.js
+├── styles.css        # Udyam portal CSS
+├── udyam-login.html  # Original portal HTML
+└── README.md         # Project documentation
+```
 
 ## Getting Started
 
 ### Prerequisites
 - Node.js (v18+)
-- PostgreSQL (with a database named `udyam`)
+- PostgreSQL
 
-### Setup
-1. Clone the repo and install dependencies:
-   ```sh
-   git clone https://github.com/ShrijanSingh/OpenBiz-Project.git
-   cd OpenBiz-Project
-   cd backend && npm install
-   cd ../frontend && npm install
-   ```
-2. Configure your PostgreSQL credentials in `backend/.env`.
-3. Run database migrations:
-   ```sh
-   cd ../backend
-   npx prisma migrate dev --name init
-   ```
-4. Start the backend:
-   ```sh
-   node index.js
-   ```
-5. Start the frontend:
-   ```sh
-   cd ../frontend
-   npm run dev
-   ```
-6. Open [http://localhost:3000](http://localhost:3000) in your browser.
+### 1. Install Dependencies
+```powershell
+cd frontend; npm install
+cd ../backend; npm install
+```
+
+### 2. Setup Database
+- Configure PostgreSQL connection in `backend/.env`
+- Run Prisma migrations:
+```powershell
+cd backend; npx prisma migrate dev
+```
+
+### 3. Start Backend
+```powershell
+cd backend; npm start
+```
+
+### 4. Start Frontend
+```powershell
+cd frontend; npm run dev
+```
+
+### 5. Test in Browser
+- Open [http://localhost:3000](http://localhost:3000) to view the Udyam login UI.
 
 ## Testing
-- Backend: `cd backend && npm test`
+- Backend: `cd backend; npm test`
+- Frontend: TypeScript lint/build checks
+
+## Notes
+- The UI matches the official Udyam portal using provided HTML/CSS.
+- OTP is simulated for demo purposes.
+- Scraper is optional; form schema is loaded from JSON.
+
+## Assignment Requirements
+- Full-stack clone of Udyam portal steps 1 & 2
+- Pixel-perfect UI
+- Dynamic validation
+- API integration
+- Testing
 
 ## License
-This project is for educational/demo purposes only. Not affiliated with the official Udyam portal.
+MIT

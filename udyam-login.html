@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Udyami Login After Verification With OTP</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>UDYAMI LOGIN</h1>
+        </header>
+
+        <main class="main-content">
+            <div class="login-form-container">
+                <h2>Udyami Login After Verification With OTP</h2>
+                
+                <form class="login-form" id="udyamLoginForm">
+                    <div class="form-group">
+                        <label for="udyamNumber">1. Udyam Registration Number</label>
+                        <span class="required">Required</span>
+                        <input type="text" id="udyamNumber" name="udyamNumber" placeholder="UDYAM-XX-00-0000000" required>
+                        <small class="help-text">Udyam should have first 5 letters, followed by one (-) after that 2 letters, followed by one (-) after that 2 digits, followed by one (-) and last 7 of numeric.</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mobileNumber">2. Enter Mobile (Filled in application)</label>
+                        <span class="required">Required</span>
+                        <input type="tel" id="mobileNumber" name="mobileNumber" placeholder="Enter 10 digit mobile number" maxlength="10" required>
+                        <small class="help-text">Mobile no. should be of 10 digits must start with 9, 8, 7 or 6</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label>3. Choose OTP Option</label>
+                        <span class="required">Required</span>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="otpMobile" name="otpOption" value="mobile" required>
+                                <label for="otpMobile">OTP on Mobile as filled in application</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="otpEmail" name="otpOption" value="email" required>
+                                <label for="otpEmail">OTP on Email as filled in application</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="submit" class="btn btn-primary">Validate & Generate OTP</button>
+                    </div>
+                </form>
+
+                <div class="otp-section" id="otpSection" style="display: none;">
+                    <div class="form-group">
+                        <label for="otpCode">Enter OTP</label>
+                        <input type="text" id="otpCode" name="otpCode" placeholder="Enter 6-digit OTP" maxlength="6">
+                    </div>
+                    <div class="button-group">
+                        <button type="button" class="btn btn-success" onclick="validateOTP()">Validate OTP & Login</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="instructions-section">
+                <h3>Instructions for Udyam Login</h3>
+                <ul>
+                    <li>Enter your 19 digit Udyam Registration Number (i.e. UDYAM-XX-00-0000000).</li>
+                    <li>Enter Mobile Number as filled in the Udyam application.</li>
+                    <li>Choose any one option for OTP (One Time Password).</li>
+                    <li>After clicking on 'Validate & Generate OTP' button, you will receive OTP on Selected Option.</li>
+                    <li>Enter OTP and click on 'Validate OTP & Login' button.</li>
+                </ul>
+
+                <div class="note-section">
+                    <h4>Note :</h4>
+                    <p>With reference to Notification No. S. O. 2119(E) dated 26.06.2020 and further amended Notification No. S O. 1055(E) dated 05.03.2021, your information of Udyam Registration in respect of Investment, Turnover and Export of the Financial Year is needed to be updated on the Udyam Registration Portal for the MSME re-classification during every change of Financial Year. Then only you would be able to update Udyam Registration Certificate.</p>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2024 Government of India. All Rights Reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById('udyamLoginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Validate Udyam Registration Number format
+            const udyamNumber = document.getElementById('udyamNumber').value;
+            const udyamPattern = /^UDYAM-[A-Z]{2}-\d{2}-\d{7}$/;
+            
+            if (!udyamPattern.test(udyamNumber)) {
+                alert('Please enter a valid Udyam Registration Number in the format: UDYAM-XX-00-0000000');
+                return;
+            }
+            
+            // Validate mobile number
+            const mobileNumber = document.getElementById('mobileNumber').value;
+            const mobilePattern = /^[6-9]\d{9}$/;
+            
+            if (!mobilePattern.test(mobileNumber)) {
+                alert('Mobile number should be 10 digits and start with 6, 7, 8, or 9');
+                return;
+            }
+            
+            // Show OTP section
+            document.getElementById('otpSection').style.display = 'block';
+            alert('OTP has been sent to your selected option. Please check and enter the OTP.');
+        });
+        
+        function validateOTP() {
+            const otpCode = document.getElementById('otpCode').value;
+            if (otpCode.length !== 6) {
+                alert('Please enter a valid 6-digit OTP');
+                return;
+            }
+            
+            alert('Login successful! Redirecting to dashboard...');
+            // Here you would typically redirect to the dashboard or next page
+        }
+    </script>
+</body>
+</html>
